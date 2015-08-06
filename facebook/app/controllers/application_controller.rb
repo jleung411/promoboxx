@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   def parse_facebook_cookies
     logger.info @facebook_cookies
     logger.info "parse_facebook_cookies"
-    @facebook_cookies ||= Koala::Facebook::OAuth.new("411274062413360", "0d8d17b1f0c10af1f0481644c5ad0cdf").get_user_info_from_cookie(cookies)
+#   @facebook_cookies ||= Koala::Facebook::OAuth.new("411274062413360", "0d8d17b1f0c10af1f0481644c5ad0cdf").get_user_info_from_cookie(cookies)
     logger.info @facebook_cookies
   end
 
