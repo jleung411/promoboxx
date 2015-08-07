@@ -24,7 +24,6 @@ class PostsController < ApplicationController
     begin
       @post = Post.new(params.require(:post).permit(:title, :description, :link, :message))
 
-#      if @post.save!
 #         @user_graph= Koala::Facebook::API.new(@facebook_cookies['access_token'])
          @user_graph= Koala::Facebook::API.new('CAAF2ZB8JQo8sBANxbGLCZBrZB667HhhZCJ08ptWknVeHHfq2PEfI1GLghcwZAdoZAr2afeJ22RacqwKYQCBuQNhEnC4ZBrP98k6nNDbcHgFF8dL0epwV09TZBrk4KCl0xGQytVZCSLvjX5K0iDB7sZCNdtYZC2FojQg2mWHO2FDg5pUi6FyagHdtEvdrbS4cheAH2dFDngwKvhXpOfBbpuNSP4LnPr5G0GKUggZD')
          @pages = @user_graph.get_connections('me', 'accounts')
@@ -49,9 +48,7 @@ class PostsController < ApplicationController
       @post.save!
       redirect_to :controller => 'posts', :action => 'show', :id => 13, :post_ids => post_ids
     rescue => e
-      logger.info 'exception'
-      logger.info e
-      logger.info e.message
+      logger.info 'exception: ' + e
 #      if(e.fb_error_type == 'OAuthException')
         # Already Posted
 #      end
