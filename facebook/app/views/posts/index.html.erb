@@ -1,3 +1,13 @@
+<% if params[:error_type] %>
+<h1>Error type: <%= params[:error_type] %></h1>
+<% end %>
+<% if params[:error_code] %>
+<h1>Error code: <%= params[:error_code] %></h1>
+<% end %>
+<% if params[:error_message] %>
+<h1>Error message: <%= params[:error_message] %></h1>
+<% end %>
+
 <h1>Listing posts</h1>
  
 <table>

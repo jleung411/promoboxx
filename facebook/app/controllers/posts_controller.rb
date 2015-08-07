@@ -38,7 +38,7 @@ class PostsController < ApplicationController
                                         :caption => @post.title,
                                         :description => @post.description,
                                         :name => @post.title,
-                                        :picture => '',
+                                        :picture => 'http://img2.wikia.nocookie.net/__cb20140418225113/clashofclans/images/1/14/Fight_Club_Edward_by_cromley009.jpg',
                                         :link => @post.link)
            end
            post_ids.push({:post_id => result[0]['id'], :page_name => page['name']})
@@ -47,12 +47,21 @@ class PostsController < ApplicationController
       logger.info @post['id']
       @post.save!
       redirect_to :controller => 'posts', :action => 'show', :id => 13, :post_ids => post_ids
-    rescue => e
-      logger.info 'exception: ' + e
-#      if(e.fb_error_type == 'OAuthException')
-        # Already Posted
-#      end
-      render new
+    rescue Koala::Facebook::APIError => e
+      logger.info 'exception: ' + e.fb_error_type
+      logger.info 'exception: ' + e.fb_error_code.to_s
+      logger.info 'exception: ' + e.fb_error_message
+      if e.fb_error_user_msg
+       logger.info 'exception: ' + e.fb_error_user_msg
+      end
+      if e.fb_error_user_title
+        logger.info 'exception: ' + e.fb_error_user_title
+      end
+      redirect_to :controller => 'posts',
+                  :action => 'index',
+                  :error_type => e.fb_error_type,
+                  :error_code => e.fb_error_code,
+                  :error_message => e.fb_error_message
     end
   end
 
