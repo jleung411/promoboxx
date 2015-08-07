@@ -4,8 +4,24 @@
 </p>
  
 <p>
-  <strong>Text:</strong>
-  <%= @post.text %>
+  <strong>Description:</strong>
+  <%= @post.description %>
 </p>
+
+<p>
+  <strong>Link:</strong>
+  <%= @post.link %>
+</p>
+
+<p>
+  <strong>Message:</strong>
+  <%= @post.message%>
+</p>
+
+<% params['post_ids'].each do |post_id| %>
+  <p>
+    <%= link_to 'link to post on ' + post_id['page_name'], 'https://www.facebook.com/' +  post_id['post_id']%>
+  </p>
+<% end %>
 
 <%= link_to 'Back', posts_path %>

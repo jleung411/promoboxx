@@ -18,9 +18,9 @@
   <% end %>
 </table>
 
-
-
-
+<p>
+<%= link_to 'New post', new_post_path %>
+</p>
 
 
 <script>
@@ -61,7 +61,7 @@
 
   window.fbAsyncInit = function() {
   FB.init({
-    appId      : '411274062413360',
+    appId      : '412298645644235',
     cookie     : true,  // enable cookies to allow the server to access 
                         // the session
     xfbml      : true,  // parse social plugins on this page
@@ -113,7 +113,7 @@
   the FB.login() function when clicked.
 -->
 
-<fb:login-button scope="public_profile,email,manage_pages,publish_actions" onlogin="checkLoginState();">
+<fb:login-button scope="public_profile,email,publish_pages,manage_pages" onlogin="checkLoginState();">
 </fb:login-button>
 
 <div id="status">
